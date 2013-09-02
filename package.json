@@ -4,7 +4,9 @@
   "description": "Backbone",
   "main": "server.js",
   "dependencies": {
-    "express": "~3.3.8"
+    "express": "~3.3.8",
+    "consolidate": "~0.9.1",
+    "swig": "~1.0.0-rc1"
   },
   "devDependencies": {},
   "scripts": {
@@ -15,7 +17,7 @@
     "type": "git",
     "url": "https://github.com/despinalr/backbone.git"
   },
-  "author": "",
+  "author": "David Espinal Ruiz",
   "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/despinalr/backbone/issues"
