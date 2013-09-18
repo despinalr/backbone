@@ -36,7 +36,7 @@ exports.insertRecord = function(req, res) {
 
 exports.findByCedula = function(req, res) {
 	res.set('Content-Type', 'application/json');
-	persona.find( { "Cedula": req.params.cedula } , function (err, personas) {
+	persona.findOne( { "Cedula": req.params.cedula } , function (err, personas) {
 		res.send(JSON.stringify(personas));
 	});
 };
@@ -48,12 +48,10 @@ exports.deleteRecord = function(req, res) {
 	});
 };
 
-/////////////////////////////////
-
-
 exports.updateRecord = function(req, res) {
 	res.set('Content-Type', 'application/json');
-	persona.find( { "_id": req.body.id } , function (err, personas) {
+	persona.findOne( { "_id": req.body.id } , function (err, personas) {
+		console.log('personas: ', personas);
 		personas.Nombre = req.body.nombre || personas.Nombre;
 		personas.Apellido = req.body.apellido || personas.Apellido;
 		personas.Cedula = req.body.cedula || personas.Cedula;
