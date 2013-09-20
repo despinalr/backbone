@@ -3,10 +3,8 @@ $(document).on("ready", function() {
 		alert("hola mundo");
 	});
 
-	utils.loadTemplate(['HomeView'], function() {
-		this.home_view = new HomeView();
-		$("#content").html(this.home_view.el);
-		//app = new AppRouter();
-    	//Backbone.history.start();
+	utils.loadTemplate(['HomeView', 'PersonaListItemView'], function() {
+		app = new AppRouter();
+    	Backbone.history.start();
 	});
 });

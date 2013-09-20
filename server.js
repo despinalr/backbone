@@ -19,6 +19,7 @@ app.configure(function(){
 	app.use(express.static('./js/views'));
 	app.use(express.static('./js/tmpl'));
 	app.use(express.static('./js/utils'));
+	app.use(express.static('./js/routers'));
 });
 
 require('./Rest/routes.js')(app);
