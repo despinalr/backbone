@@ -16,8 +16,7 @@ window.AppRouter = Backbone.Router.extend({
         
         personList.fetch({
             success: function() {
-                this.personas_view = new PersonaListView( { model: personList } );
-                $("#personaslst").html(this.personas_view.el);
+                $("#personaslst").html(new PersonaListView( { model: personList } ).el);
             },
             error: function(collection, response) {
                 console.log(response);
@@ -28,6 +27,7 @@ window.AppRouter = Backbone.Router.extend({
     },
 
 	list: function(page) {
+        console.log('Si llega');
         var personList = new PersonaCollection();
         
         personList.fetch({
