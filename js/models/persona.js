@@ -2,15 +2,15 @@ window.Persona = Backbone.Model.extend({
     urlRoot: "personas",
     idAttribute: "_id",
 
-    initialize: function () {
+    initialize: function() {
         this.validators = {};
     },
 
-    validateItem: function (key) {
+    validateItem: function(key) {
         return { isValid: true };
     },
 
-    validateAll: function () {
+    validateAll: function() {
         return { isValid: true };
     },
 
