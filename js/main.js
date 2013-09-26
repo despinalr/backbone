@@ -7,4 +7,5 @@ $(document).on("ready", function() {
 		app = new AppRouter();
     	Backbone.history.start();
 	});
+	console.log('prueba');
 });
