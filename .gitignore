@@ -2,6 +2,7 @@
 ## Eclipse
 #################
 
+# Personal
 node_modules/
 .idea/
 
