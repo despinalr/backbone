@@ -12,5 +12,5 @@ module.exports = function (app) {
 	app.post('/personas', mongo.insertRecord);
 	app.get('/personas/:cedula', mongo.findByCedula);
 	app.delete('/personas/:id', mongo.deleteRecord);
-	app.put('/personas', mongo.updateRecord);
+	app.put('/personas/:id', mongo.updateRecord);
 };

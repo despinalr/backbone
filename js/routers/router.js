@@ -1,8 +1,8 @@
 window.AppRouter = Backbone.Router.extend({
 
     routes: {
-        ""                       : "home",
-        "products"	         	 : "list"
+        "": "home",
+        "products": "list"
     },
 
     initialize: function () {
@@ -13,19 +13,19 @@ window.AppRouter = Backbone.Router.extend({
         $("#content").html(this.home_view.el);
     },
 
-	list: function(page) {
+    list: function (page) {
         var personList = new PersonaCollection();
-        
+
         personList.fetch({
-            success: function() {
-                $("#personaslst").html(new PersonaListView( { model: personList } ).el);
+            success: function () {
+                $("#personaslst").html(new PersonaListView({ model: personList }).el);
             },
-            error: function(collection, response) {
+            error: function (collection, response) {
                 console.log(response);
             }
         }).complete(function () {
-             console.log("done");
+            console.log("done");
         });
     }
-    
+
 });

@@ -1,11 +1,11 @@
 var mongoose = require('mongoose').connect('localhost', 'test');
-
 var personaSchema = new mongoose.Schema({
     Nombre: String,
     Apellido: String,
     Cedula: Number
 });
 
+var self = this;
 var persona = mongoose.model('Personas', personaSchema);
 
  mongoose.connection.once('open', function callback () {
@@ -21,16 +21,15 @@ exports.findAll = function(req, res) {
 
 exports.insertRecord = function(req, res) {
 	res.set('Content-Type', 'application/json');
-	var instance = new persona({
-		Nombre: req.body.nombre,
-		Apellido: req.body.apellido,
-    	Cedula: req.body.cedula
-	});
-	
+    var instance = new persona(req.body);
+
 	instance.save(function (err) {
 		if(!err) {
 			res.send(JSON.stringify({"status":"ok"}));
 		}
+        else {
+            res.send(err);
+        }
 	});
 };
 
@@ -49,16 +48,13 @@ exports.deleteRecord = function(req, res) {
 };
 
 exports.updateRecord = function(req, res) {
-	res.set('Content-Type', 'application/json');
-	persona.findOne( { "_id": req.body.id } , function (err, personas) {
-		personas.Nombre = req.body.nombre || personas.Nombre;
-		personas.Apellido = req.body.apellido || personas.Apellido;
-		personas.Cedula = req.body.cedula || personas.Cedula;
-
-		personas.save(function (err) {
-			if(!err) {
-				res.send(JSON.stringify({"status":"ok"}));
-			}
-		});
-	});
+    res.set('Content-Type', 'application/json');
+    persona.update( { "_id": req.params.id } , req.body, { multi: true }, function (err, numberAffected, raw) {
+        if (err) {
+            res.send(err);
+        }
+        else {
+            res.send(JSON.stringify({"status":"ok"}));
+        }
+    });
 };
