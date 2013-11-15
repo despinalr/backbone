@@ -2,18 +2,19 @@ window.AppRouter = Backbone.Router.extend({
 
     routes: {
         "": "home",
-        "products": "list"
+        "products": "list",
+        "addproduct": "add"
     },
 
-    initialize: function () {
+    initialize: function() {
     },
 
-    home: function (id) {
+    home: function(id) {
         this.home_view = new HomeView();
         $("#content").html(this.home_view.el);
     },
 
-    list: function (page) {
+    list: function(page) {
         var personList = new PersonaCollection();
 
         personList.fetch({
@@ -26,6 +27,11 @@ window.AppRouter = Backbone.Router.extend({
         }).complete(function () {
             console.log("done");
         });
-    }
+    },
 
+    add: function(page) {
+        console.log("add");
+        this.persona_view = new PersonaView();
+        $("#content").html(this.persona_view.el);
+    }
 });
