@@ -30,7 +30,7 @@ window.AppRouter = Backbone.Router.extend({
     },
 
     add: function(page) {
-        console.log("add");
+        console.log("add control 1");
         this.persona_view = new PersonaView();
         $("#content").html(this.persona_view.el);
     }
