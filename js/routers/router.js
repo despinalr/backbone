@@ -3,7 +3,8 @@ window.AppRouter = Backbone.Router.extend({
     routes: {
         "": "home",
         "products": "list",
-        "addproduct": "add"
+        "addproduct": "add",
+        "editproduct/:id": "edit"
     },
 
     initialize: function() {
@@ -30,8 +31,17 @@ window.AppRouter = Backbone.Router.extend({
     },
 
     add: function(page) {
-        console.log("add control 1");
-        this.persona_view = new PersonaView();
-        $("#content").html(this.persona_view.el);
+        var person = new Persona();
+        $("#content").html(new PersonaView({ model: person }).el);
+    },
+
+    edit: function(id) {
+        var person = new Persona({_id: id});
+
+        person.fetch({
+            success: function(){
+                $("#content").html(new PersonaView({ model: person }).el);
+            }
+        });
     }
 });
