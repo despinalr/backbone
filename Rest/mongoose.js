@@ -1,3 +1,4 @@
+var util = require('./util');
 var mongoose = require('mongoose').connect('localhost', 'test');
 var personaSchema = new mongoose.Schema({
     Nombre: String,
@@ -5,56 +6,42 @@ var personaSchema = new mongoose.Schema({
     Cedula: Number
 });
 
-var self = this;
 var persona = mongoose.model('Personas', personaSchema);
 
- mongoose.connection.once('open', function callback () {
-	console.log('Conectado!!!');
+mongoose.connection.once('open', function callback() {
+    console.log('Conectado!!!');
 });
 
-exports.findAll = function(req, res) {
-	res.set('Content-Type', 'application/json');
-	persona.find( {} , function (err, personas) {
-		res.send(JSON.stringify(personas));
-	});
-};
-
-exports.insertRecord = function(req, res) {
-	res.set('Content-Type', 'application/json');
-    var instance = new persona(req.body);
-
-	instance.save(function (err) {
-		if(!err) {
-			res.send(JSON.stringify({"status":"ok"}));
-		}
-        else {
-            res.send(err);
-        }
-	});
-};
-
-exports.findByCedula = function(req, res) {
-	res.set('Content-Type', 'application/json');
-	persona.findOne( { "Cedula": req.params.cedula } , function (err, personas) {
-		res.send(JSON.stringify(personas));
-	});
-};
-
-exports.deleteRecord = function(req, res) {
-	res.set('Content-Type', 'application/json');
-	persona.remove( { "_id": req.params.id } , function (err) {
-		res.send(JSON.stringify({"status":"ok"}));
-	});
-};
-
-exports.updateRecord = function(req, res) {
-    res.set('Content-Type', 'application/json');
-    persona.update( { "_id": req.params.id } , req.body, { multi: true }, function (err, numberAffected, raw) {
-        if (err) {
-            res.send(err);
-        }
-        else {
-            res.send(JSON.stringify({"status":"ok"}));
-        }
+exports.findAllRecords = function(callback) {
+    persona.find({}, function(err, personas) {
+        callback(personas);
     });
 };
+
+exports.getRecord = function(field, value, callback) {
+    var filter = util.buildFilter(field, value);
+    persona.findOne(JSON.parse(filter), function(err, person) {
+        callback(person);
+    });
+}
+
+exports.insertRecord = function(model, callback) {
+    var instance = new persona(model);
+    instance.save(function(err) {
+        callback(util.buildResponse(err));
+    });
+};
+
+exports.updateRecord = function(field, value, body, callback) {
+    var filter = util.buildFilter(field, value);
+    persona.update(JSON.parse(filter), body, { multi: true }, function (err, numberAffected, raw) {
+        callback(util.buildResponse(err));
+    });
+};
+
+exports.deleteRecord = function(field, value, callback) {
+    var filter = util.buildFilter(field, value);
+    persona.remove(JSON.parse(filter), function(err) {
+        callback(util.buildResponse(err));
+    });
+}

@@ -1,6 +1,6 @@
 module.exports = function (app) {
 
-	var mongo = require('./mongoose');
+	var personRoute = require('./personRoutes');
 
 	app.get('/', function (req, res) {
 		res.render('index', {
@@ -8,9 +8,9 @@ module.exports = function (app) {
 		});
 	});
 
-	app.get('/personas', mongo.findAll);
-	app.post('/personas', mongo.insertRecord);
-	app.get('/personas/:cedula', mongo.findByCedula);
-	app.delete('/personas/:id', mongo.deleteRecord);
-	app.put('/personas/:id', mongo.updateRecord);
+	app.get('/personas', personRoute.findAll);
+	app.post('/personas', personRoute.insertPerson);
+	app.get('/personas/:cedula', personRoute.findByCedula);
+	app.delete('/personas/:id', personRoute.deletePerson);
+	app.put('/personas/:id', personRoute.updatePerson);
 };
