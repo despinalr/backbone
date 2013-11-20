@@ -5,7 +5,10 @@ window.PersonaView = Backbone.View.extend({
     },
 
     render: function() {
-        $(this.el).html(this.template());
+        var person = this.model;
+        var self = $(this.el);
+
+        $(this.el).html(this.template(person.toJSON()));
         return this;
     }
 
