@@ -9,9 +9,12 @@
     "swig": "~1.0.0-rc1",
     "mongoose": "~3.6.18"
   },
-  "devDependencies": {},
+  "devDependencies": {
+      "mocha": "*",
+      "should": ">= 0.0.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node_modules/.bin/mocha -w",
     "start": "node server.js"
   },
   "repository": {
