@@ -15,7 +15,8 @@ window.PersonaView = Backbone.View.extend({
     events: {
         "change"        : "change",
         "click .save"   : "save",
-        "click .cancel" : "canceladd"
+        "click .cancel" : "canceladd",
+        "click .delete" : "delete"
     },
 
     change: function(event) {
@@ -39,6 +40,17 @@ window.PersonaView = Backbone.View.extend({
 
     canceladd: function() {
         window.history.back();
+    },
+
+    delete: function() {
+        this.model.destroy({
+            success: function () {
+                app.navigate('products', true);
+                console.log('Product deleted successfully');
+            }
+        });
+
+        return false;
     }
 
 });
