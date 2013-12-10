@@ -14,6 +14,14 @@ window.Persona = Backbone.Model.extend({
         return { isValid: true };
     },
 
+    save: function(attrs, options) {
+        options || (options = {});
+        // Filter the data to send to the server
+        delete this.attributes._id;
+        // Proxy the call to the original save function
+        Backbone.Model.prototype.save.call(this, attrs, options);
+    },
+
     defaults: {
         _id : null,
         Cedula: 0,

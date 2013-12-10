@@ -1,5 +1,6 @@
 var util = require('./util');
 var mongoose = require('mongoose').connect('localhost', 'test');
+var objectId = mongoose.Types.ObjectId;
 var personaSchema = new mongoose.Schema({
     Nombre: String,
     Apellido: String,
@@ -33,8 +34,7 @@ exports.insertRecord = function(model, callback) {
 };
 
 exports.updateRecord = function(field, value, body, callback) {
-    var filter = util.buildFilter(field, value);
-    persona.update(JSON.parse(filter), body, { multi: true }, function (err, numberAffected, raw) {
+    persona.update({ "_id": objectId.fromString(value)}, body, { multi: true }, function (err, numberAffected, raw) {
         callback(util.buildResponse(err));
     });
 };
