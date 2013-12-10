@@ -51,7 +51,7 @@ describe('mongoose getRecord', function() {
     });
 
     after(function(done) {
-        mongo.deleteRecord("Cedula", 123, function(response) {
+        mongo.deleteRecordByFilter("Cedula", 123, function(response) {
             done();
         });
     });
@@ -66,10 +66,10 @@ describe('rest getAllRecord', function() {
             });
         });
 
-        it('should return 5 records', function(done) {
+        it('should return 1 records', function(done) {
             request("http://localhost:3000/personas", function(error, response, body) {
                 var json = JSON.parse(body);
-                assert.equal(5, json.length);
+                assert.equal(1, json.length);
                 done();
             });
         });
@@ -86,7 +86,7 @@ describe('rest getAllRecord', function() {
         });
 
         after(function(done) {
-            mongo.deleteRecord("Cedula", 123, function(response) {
+            mongo.deleteRecordByFilter("Cedula", 123, function(response) {
                 done();
             });
         });

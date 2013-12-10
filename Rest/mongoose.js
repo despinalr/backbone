@@ -43,4 +43,11 @@ exports.deleteRecord = function(field, value, callback) {
     persona.remove({ "_id": objectId.fromString(value)}, function(err) {
         callback(util.buildResponse(err));
     });
+};
+
+exports.deleteRecordByFilter = function(field, value, callback) {
+    var filter = util.buildFilter(field, value);
+    persona.remove(JSON.parse(filter), function(err) {
+        callback(util.buildResponse(err));
+    });
 }
