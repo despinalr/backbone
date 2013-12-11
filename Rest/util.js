@@ -1,6 +1,6 @@
 exports.buildFilter = function(field, value) {
     return "{\"" + field + "\": " + value + "}";
-}
+};
 
 exports.buildResponse = function(err) {
     var response = "";
@@ -11,4 +11,4 @@ exports.buildResponse = function(err) {
         response = err;
     }
     return response;
-}
+};

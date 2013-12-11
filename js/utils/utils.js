@@ -10,7 +10,7 @@ window.utils = {
                 }));
             }
             else {
-            	alert(view + " not found");
+                alert(view + " not found");
             }
         });
 

@@ -24,7 +24,7 @@ exports.getRecord = function(field, value, callback) {
     persona.findOne(JSON.parse(filter), function(err, person) {
         callback(person);
     });
-}
+};
 
 exports.insertRecord = function(model, callback) {
     var instance = new persona(model);
@@ -50,4 +50,4 @@ exports.deleteRecordByFilter = function(field, value, callback) {
     persona.remove(JSON.parse(filter), function(err) {
         callback(util.buildResponse(err));
     });
-}
+};

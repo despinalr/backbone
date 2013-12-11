@@ -14,49 +14,26 @@ module.exports = function(grunt) {
             }
         },
 
-        jslint: {
-            server: {
-                src: [
-                    'server.js',
-                    'Rest/*.js'
-                ],
-                exclude: [
-                    'test/*.js'
-                ],
-                directives: {
-                    node: true,
-                    todo: true,
-                    nomen: false
+        jshint: {
+            options: {
+                curly: true,
+                eqeqeq: true,
+                eqnull: true,
+                browser: true,
+                globals: {
+                    jQuery: true
                 },
-                options: {
-                    errorsOnly: true,
-                    failOnError: false
-                }
+                force: true,
+                ignores: ['js/lib/*.js']
             },
-            client: {
-                src: [
-                    'js/**/*.js'
-                ],
-                exclude: [
-                    'js/lib/*.js'
-                ],
-                directives: {
-                    browser: true,
-                    predef: [
-                        'jQuery'
-                    ],
-                    nomen: false
-                },
-                options: {
-                    errorsOnly: true,
-                    failOnError: false
-                }
+            files: {
+                src: ['js/*.js', 'Rest/*.js', 'server.js']
             }
         }
     });
 
     grunt.loadNpmTasks('grunt-mocha-test');
-    grunt.loadNpmTasks('grunt-jslint');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
-    grunt.registerTask('default', ['mochaTest', 'jslint']);
+    grunt.registerTask('default', ['mochaTest', 'jshint']);
 };
