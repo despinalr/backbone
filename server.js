@@ -15,11 +15,8 @@ app.configure(function(){
 	app.set('view engine', 'html');
 	app.use(express.static('./js'));
 	app.use(express.static('./js/lib'));
-	app.use(express.static('./js/models'));
-	app.use(express.static('./js/views'));
 	app.use(express.static('./js/tmpl'));
-	app.use(express.static('./js/utils'));
-	app.use(express.static('./js/routers'));
+	app.use(express.static('./js/min'));
 });
 
 require('./Rest/routes.js')(app);
