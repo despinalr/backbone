@@ -9,7 +9,7 @@ module.exports = function(grunt) {
                     ui: 'bdd'
                 },
                 src: [
-                    'test/*.js'
+                    'test/test.js'
                 ]
             }
         },
@@ -32,6 +32,9 @@ module.exports = function(grunt) {
         },
 
         uglify: {
+            options: {
+                mangle: false
+            },
             target: {
                 files: {
                     'js/min/output.min.js': ['js/*.js', 'js/models/*.js', 'js/routers/*.js', 'js/utils/*.js', 'js/views/*.js']
@@ -43,6 +46,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-karma');
 
     grunt.registerTask('default', ['mochaTest', 'jshint', 'uglify']);
 };

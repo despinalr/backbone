@@ -3,9 +3,7 @@ module.exports = function (app) {
 	var personRoute = require('./personRoutes');
 
 	app.get('/', function (req, res) {
-		res.render('index', {
-			titulo : 'Bienvenido'
-		});
+		res.sendfile('./views/index.html');
 	});
 
 	app.get('/personas', personRoute.findAll);

@@ -1,4 +1,4 @@
-$(document).on("ready", function() {
+/*$(document).on("ready", function() {
 	$("#conectar").click(function() {
         alert("hola mundo");
 	});
@@ -7,4 +7,12 @@ $(document).on("ready", function() {
         app = new AppRouter();
         Backbone.history.start();
 	});
-});
+});*/
+
+function HelloController($scope) {
+    $scope.greeting = { text: 'Hello' };
+
+    $scope.add = function() {
+        $scope.count += 1;
+    };
+}
