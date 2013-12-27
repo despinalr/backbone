@@ -40,6 +40,12 @@ module.exports = function(grunt) {
                     'js/min/output.min.js': ['js/*.js', 'js/models/*.js', 'js/routers/*.js', 'js/utils/*.js', 'js/views/*.js']
                 }
             }
+        },
+
+        karma: {
+            e2e: {
+                configFile: 'test/karmaconf.js'
+            }
         }
     });
 
@@ -48,5 +54,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('default', ['mochaTest', 'jshint', 'uglify']);
+    grunt.registerTask('default', ['mochaTest', 'karma', 'jshint', 'uglify']);
+    grunt.registerTask('test', ['mochaTest', 'karma']);
+    grunt.registerTask('hint', ['jshint']);
+    grunt.registerTask('min', ['uglify']);
 };

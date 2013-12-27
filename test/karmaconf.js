@@ -2,16 +2,15 @@ module.exports = function(config) {
   config.set({
 
     // base path, that will be used to resolve files and exclude
-    basePath: '',
+    basePath: '../',
 
     // frameworks to use
-    frameworks: ['jasmine', 'ng-scenario'],
+    frameworks: ['ng-scenario'],
 
     // list of files / patterns to load in the browser
     files: [
-      '../js/lib/angular.min.js',
-      '../js/main.js',
-      '../test/endtoendtest.js'
+      './js/lib/angular.min.js',
+      './test/endtoendtest.js'
     ],
 
     // list of files to exclude
@@ -51,6 +50,12 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: true
+    singleRun: true,
+
+    urlRoot: '/__karma/',
+
+    proxies: {
+        '/': 'http://localhost:3000/'
+    }
   });
 };
