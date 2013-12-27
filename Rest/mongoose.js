@@ -1,5 +1,5 @@
 var util = require('./util');
-var mongoose = require('mongoose').connect('localhost', 'test');
+var mongoose = require('mongoose').connect('dev-davide', 'test');
 var objectId = mongoose.Types.ObjectId;
 var personaSchema = new mongoose.Schema({
     Nombre: String,
